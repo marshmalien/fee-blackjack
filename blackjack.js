@@ -10,6 +10,7 @@
     card = Math.floor(Math.random() * cards.length);
     display.innerHTML += " " + cards[card];
     checkResult(false, true);
+    console.log(cards[card]);
   }
   document.getElementById('hit').addEventListener('click', hit);
 
@@ -37,7 +38,11 @@
       } else if (card === 'J' || card === 'Q' || card === 'K') {
         cardValue += 10;
       } else if (card === 'A') {
-        cardValue += 11;
+        if ((cardValue + 11) > 21) {
+          cardValue += 1;
+        } else {
+          cardValue += 11;
+        }
       }
     });
 
