@@ -14,7 +14,7 @@
 
   function hit() {
     display.innerHTML += " " + drawCard();
-    checkResult(false, true);
+    checkResult(false);
   }
   // calls the object function 'hit'
   document.getElementById('hit').addEventListener('click', hit);
@@ -24,12 +24,12 @@
     display.innerHTML = drawCard() + ' ' + drawCard();
     checkResult();
   }
-
+  // drawCard function returns a random card
   function drawCard() {
     return cards[Math.floor(Math.random() * cards.length)];
   }
 
-  function checkResult(standing, hitting) {
+  function checkResult(standing) {
     var hand = display.innerHTML.split(' ');
     var cardValue = 0;
 
