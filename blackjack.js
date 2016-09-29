@@ -10,9 +10,7 @@
   button.innerHTML = "New Hand";
   var aside = document.querySelector("aside");
   aside.appendChild(button);
-  button.addEventListener('click', function() {
-    newHand();
-  })
+  button.addEventListener('click', newHand);
 
   function hit() {
     card = Math.floor(Math.random() * cards.length);
