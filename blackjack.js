@@ -6,6 +6,14 @@
   var cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
   var card = null;
 
+  var button = document.createElement("button");
+  button.innerHTML = "New Hand";
+  var aside = document.querySelector("aside");
+  aside.appendChild(button);
+  button.addEventListener('click', function() {
+    newHand();
+  })
+
   function hit() {
     card = Math.floor(Math.random() * cards.length);
     display.innerHTML += " " + cards[card];
@@ -19,6 +27,7 @@
     display.innerHTML = cards[card];
     card = Math.floor(Math.random() * cards.length);
     display.innerHTML = display.innerHTML + ' ' + cards[card];
+    checkResult();
   }
 
   /**
@@ -50,14 +59,13 @@
       alert('Dealer wins.');
     } else if (cardValue <= 18 && standing) {
       alert('Push!');
-    } else if (cardValue > 18 && standing || cardValue === 21) {
-      alert('You win!');
     } else if (cardValue > 21) {
       alert('You Bust.');
+    } else if (cardValue > 18 && standing || cardValue === 21) {
+      alert('You win!');
     } else {
       return;
     }
-    newHand();
   }
 
   document.getElementById('stand').addEventListener('click', function() {
@@ -66,5 +74,4 @@
 
   newHand();
   // undefined argument is falsy
-  checkResult();
 })();
