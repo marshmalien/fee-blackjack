@@ -4,8 +4,8 @@
 
   var display = document.getElementById('cards');
   var cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-  var card = null;
 
+  // newHand button
   var button = document.createElement("button");
   button.innerHTML = "New Hand";
   var aside = document.querySelector("aside");
@@ -13,28 +13,22 @@
   button.addEventListener('click', newHand);
 
   function hit() {
-    card = Math.floor(Math.random() * cards.length);
-    display.innerHTML += " " + cards[card];
+    display.innerHTML += " " + drawCard();
     checkResult(false, true);
-    console.log(cards[card]);
   }
+  // calls the object function 'hit'
   document.getElementById('hit').addEventListener('click', hit);
 
+  // newHand function displays 2 random cards, then calls checkResult
   function newHand() {
-    card = Math.floor(Math.random() * cards.length);
-    display.innerHTML = cards[card];
-    card = Math.floor(Math.random() * cards.length);
-    display.innerHTML = display.innerHTML + ' ' + cards[card];
+    display.innerHTML = drawCard() + ' ' + drawCard();
     checkResult();
   }
 
-  /**
-   * Check the result of the current cards and alert the game result
-   *
-   * @param  {Boolean} standing  Whether or not the player is standing
-   * @param  {Boolean} hitting   Whether or not the player is hitting
-   * @return {void}
-   */
+  function drawCard() {
+    return cards[Math.floor(Math.random() * cards.length)];
+  }
+
   function checkResult(standing, hitting) {
     var hand = display.innerHTML.split(' ');
     var cardValue = 0;
